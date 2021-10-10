@@ -1,0 +1,100 @@
+{% extends 'booking/base.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'booking/css/card/style.css' %}">
+    <!-- Tab links -->
+    <!-- styling reservation tag -->
+    <style>
+        .accordion {
+            background-color: #eee;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            transition: 0.4s;
+        }
+
+        /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+        .active, .accordion:hover {
+        }
+
+        /* Style the accordion panel. Note: hidden by default */
+        .panel {
+            padding: 0 18px;
+            background-color: black;
+            display: none;
+            overflow: hidden;
+
+        }
+
+    </style>
+
+    <!--end styling reservation tag-->
+
+    <div class="container" style="margin-top: 150px; width: 800px">
+        <div class="tab">
+            <button class="tablinks" onclick="openCity(event, 'London')" id="default">بازی</button>
+            <button class="tablinks" onclick="openCity(event, 'Paris')">رزرو</button>
+            <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+        </div>
+
+        <!-- Tab content -->
+        <div id="London" class="tabcontent">
+            <img src="{{ games.photo.url }}" alt="smt" style="height: 450px; width: 356px;">
+        </div>
+
+        <div id="Paris" class="tabcontent">
+            {% for d in day_list %}
+                {% if d == today %}
+                    <button class="accordion"
+                            style="background-color: gray; color: whitesmoke; text-align: center; font-family: 'Arial',serif; font-size: 17px; margin-top: 1px">
+                        <b>Today </b></button>
+                    <div class="panel">
+                        <p>{% for date in dates%}
+                            <p>{{ date }}</p>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <button class="accordion"
+                            style="background-color: gray; color: whitesmoke; text-align: center; font-family: 'Arial',serif; font-size: 17px; margin-top: 1px">
+                        <b>{{ d }} </b></button>
+                    <div class="panel">
+
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <div id="Tokyo" class="tabcontent">
+            <h3>Tokyo</h3>
+            <p>Tokyo is the capital of Japan.</p>
+        </div>
+    </div>
+    <script src="{% static 'booking/js/cart/script.js' %}"></script>
+
+
+    <script>
+        document.getElementById("default").click();
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                /* Toggle between adding and removing the "active" class,
+                to highlight the button that controls the panel */
+                this.classList.toggle("active");
+
+                /* Toggle between hiding and showing the active panel */
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+    </script>
+{% endblock %}
