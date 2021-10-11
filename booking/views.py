@@ -20,11 +20,5 @@ class reserve(View):
         today = jdatetime.date.today()
         day_list = [(today + jdatetime.timedelta(days=x)) for x in range(8)]
 
-        def check():
-            for day in day_list:
-                for date in dates:
-                    if day == date:
-                        return date
-
         return render(request, 'booking/reserver.html',
                       {'games': games, 'day_list': day_list, 'today': today, 'date': dates})

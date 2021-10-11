@@ -47,24 +47,17 @@
         </div>
 
         <div id="Paris" class="tabcontent">
-            {% for d in day_list %}
-                {% if d == today %}
+            {% for d in date %}
+                {% if d.jd_create_datetime >= today %}
                     <button class="accordion"
                             style="background-color: gray; color: whitesmoke; text-align: center; font-family: 'Arial',serif; font-size: 17px; margin-top: 1px">
-                        <b>Today </b></button>
+                        <b>{{ d.jd_create_datetime }} </b>
+                    </button>
                     <div class="panel">
-                        <p>{% for date in dates%}
-                            <p>{{ date }}</p>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    <button class="accordion"
-                            style="background-color: gray; color: whitesmoke; text-align: center; font-family: 'Arial',serif; font-size: 17px; margin-top: 1px">
-                        <b>{{ d }} </b></button>
-                    <div class="panel">
-
+                        OK
                     </div>
                 {% endif %}
+
             {% endfor %}
         </div>
 
