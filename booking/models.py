@@ -1,4 +1,4 @@
-import jalali_date
+from jdatetime import date as jd
 from django.db import models
 from jalali_date import *
 from django_jalali.db import models as jmodels
@@ -45,13 +45,23 @@ class ReserveDate(models.Model):
     def j_date(self):
         return date2jalali(self.date)
 
+    def jd_create_datetime(self):
+        return jd.fromgregorian(year=self.date.year, month=self.date.month, day=self.date.day)
+
     activate = models.BooleanField(default=False)
     reserved = models.BooleanField(default=False)
     name = models.ForeignKey(EscapeRoom, on_delete=models.CASCADE, null=True)
     player = models.ForeignKey(Player, on_delete=models.CASCADE, null=True)
 
-    # def __str__(self):
-    #     return f'{self.}'
+    def __str__(self):
+        return f'{self.date}'
+
+
+
+
+
+
+
 
 
 class ReserveTime(models.Model):
