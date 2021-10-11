@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'booking',
     'django_jalali',
 
+    # app Blog
+    'Blog.apps.BlogConfig',
+
 ]
 
 JALALI_DATE_DEFAULTS = {
