@@ -24,7 +24,7 @@
         /* Style the accordion panel. Note: hidden by default */
         .panel {
             padding: 0 18px;
-            background-color: black;
+            background-color: white;
             display: none;
             overflow: hidden;
 
@@ -54,7 +54,14 @@
                         <b>{{ d.jd_create_datetime }} </b>
                     </button>
                     <div class="panel">
-                        OK
+                        {% for time in times %}
+                            {% if time.date == d%}
+                                <div class="">
+                                    <link href="">{{ time.time }}
+                                </div>
+
+                            {% endif %}
+                        {% endfor %}
                     </div>
                 {% endif %}
 
