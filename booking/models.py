@@ -51,7 +51,7 @@ class ReserveDate(models.Model):
     activate = models.BooleanField(default=False)
     reserved = models.BooleanField(default=False)
     name = models.ForeignKey(EscapeRoom, on_delete=models.CASCADE, null=True)
-    player = models.ForeignKey(Player, on_delete=models.CASCADE, null=True)
+    player = models.ForeignKey(Player, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return f'{self.date}'
