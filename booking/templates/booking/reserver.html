@@ -57,7 +57,9 @@
                         {% for time in times %}
                             {% if time.date == d%}
                                 <div class="">
-                                    <link href="">{{ time.time }}
+                                    <button>
+                                        <a href="{% url 'reserve_page' d.name d.date %}" class="button">{{ time.time }}</a>
+                                    </button>
                                 </div>
 
                             {% endif %}
