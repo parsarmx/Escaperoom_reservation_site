@@ -1,7 +1,9 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
 from django.views.generic import ListView
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
+from django.shortcuts import get_object_or_404
 
 from .models import *
 from .forms import *
@@ -27,7 +29,11 @@ def reserve_details(request, name):
                   {'games': games, 'day_list': day_list, 'today': today, 'date': dates, 'times': times})
 
 
-class reserve_page(FormView):
+class ReservePage(ListView):
+    model = Player
+    fields = ['name', 'last_name', 'email', 'number_of_players']
     template_name = 'booking/reserve_page.html'
-    form_class = RegisterForm
-    success_url = '/thanks/'
+
+
+
+
