@@ -7,7 +7,13 @@
 <body>
 checks!
 <form method="POST" class="post-form">{% csrf_token %}
-    {{ form.as_p }}
+    {{ form.name }}
+    {{ form.last_name }}
+    {{ form.number_of_players }}
+    {{ form.phone }}
+    {{ form.email }}
+    {{ form.game }}
+
     <button type="submit" class="save btn btn-default">Save</button>
 </form>
 </body>
