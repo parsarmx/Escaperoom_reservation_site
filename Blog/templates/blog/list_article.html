@@ -4,12 +4,13 @@
 {% block content %}
 
     <!-- Page Header-->
-    <header class="masthead" style="background-image: url({% static 'blog/img/home-bg.jpg' %});width: 100%;height: 100vh">
+    <header class="masthead"
+            style="background-image: url({% static 'blog/img/home-bg.jpg' %});width: 100%;height: 100vh">
         <div class="container position-relative px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <div class="site-heading">
-                        <h1>Clean Blog</h1>
+                        <h1 style="margin-top: 14vh">Clean Blog</h1>
                         <span class="subheading">A Blog Theme by Start Bootstrap</span>
                     </div>
                 </div>
@@ -22,20 +23,21 @@
             <div class="col-md-10 col-lg-8 col-xl-7">
                 {% for article in object_list %}
 
-                <!-- Post preview-->
-                <div class="post-preview">
-                    <a href="#">
-                        <h2 class="post-title">{{ article.title}}</h2>
-                        <h3 class="post-subtitle">{{ article.descriptions|truncatewords:10 }}</h3>
-                    </a>
-                    <p class="post-meta">
-                        نوشته شده توسط
-                        <a href="#!">{{ article.author }}</a>
-                        {{ article.publish }}
-                    </p>
-                </div>
-                <!-- Divider-->
-                <hr class="my-4"/>
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                        <a href="{{ article.get_absolute_url }}">
+                            <h1 class="post-title" style="font-family: tanha">{{ article.title }}</h1>
+                            <p class="post-subtitle"
+                               style="font-family: tanha;font-size: medium">{{ article.descriptions|truncatewords:30 }}</p>
+                        </a><br>
+                        <p class="post-meta" style="text-align: left;font-family: tanha">
+                            نوشته شده توسط
+                            <a href="{{ article.get_absolute_url }}" style="font-family:tanha">{{ article.author.get_full_name }}</a>
+                            {#                        {{ article.publish }}#}
+                        </p>
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4"/>
 
 
                 {% endfor %}
