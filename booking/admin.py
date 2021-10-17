@@ -11,7 +11,6 @@ class EscapeAdmin(admin.ModelAdmin):
         'price',
         'description',
         'story',
-        'number_of_players',
         'city',
         'age',
         'genre',
