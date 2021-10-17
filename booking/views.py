@@ -34,18 +34,31 @@ def ReservePage(request, name, date, time):
         form = RegisterForm(initial={'game': EscapeRoom.objects.all().get(name=name)})
         reserve_time = ReserveTime.objects.all().get(date__date=date, time=time)
         return render(request, 'booking/reserve_page.html', {'form': form})
+
+    # this field will post the form
+
     if request.method == "POST":
         form = RegisterForm(request.POST)
         reserve_time = ReserveTime.objects.all().get(date__date=date, time=time)
-        if form.is_valid() and Player.objects.all().filter(phone=form.cleaned_data['phone'],
-                                                           email=form.cleaned_data['email']).count() != 1:
-            return HttpResponse('This Player exist')
-        elif form.is_valid() and reserve_time.status is False:
+
+        # this field checks if a player exist ; player will chose form the existent model
+        if form.is_valid() and Player.objects.all().filter(phone=form.cleaned_data['phone']).count() != 0:
+            reserve_time.status = True
+            reserve_time.player = reserve_time.player = Player.objects.all().get(phone=form.cleaned_data['phone'],
+                                                                                 email=form.cleaned_data['email'])
+            reserve_time.game = EscapeRoom.objects.all().get(name=name)
+            reserve_time.save()
+
+        # this field create a player model if player dose not exist
+        elif form.is_valid() and (reserve_time.status is False) and (Player.objects.all().filter(
+                phone=form.cleaned_data['phone']).count() == 0):
             form.save()
             reserve_time.status = True
             reserve_time.player = Player.objects.all().get(phone=form.cleaned_data['phone'],
                                                            email=form.cleaned_data['email'])
             reserve_time.game = EscapeRoom.objects.all().get(name=name)
             reserve_time.save()
+
+        # this part shows if a player wants to reserve a time that dose not available
         else:
             return HttpResponse('<h1>Failed</h1>')
