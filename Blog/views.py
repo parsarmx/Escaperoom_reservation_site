@@ -12,3 +12,12 @@ class List_article(ListView):
 
     def get_queryset(self):
         return ArticleModel.objects.filter(status=True)
+
+
+def Detail_article(request,article_id,article_slug):
+    article_view = ArticleModel.objects.get_by_id(id_article=article_id)
+    context = {
+        'article':article_view
+    }
+
+    return render(request,'blog/detail_article.html',context)

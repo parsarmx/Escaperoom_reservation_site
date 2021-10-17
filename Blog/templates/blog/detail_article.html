@@ -1,0 +1,38 @@
+{% extends 'booking/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url('{% static "blog/img/detail.jpg" %}');width: 100%;height:100vh">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="post-heading">
+                        <h1 style="font-family:tanha;font-size: 6vh;color: #1a1e21;padding-top: 200px">{{ article.title }}</h1>
+{#                        <h2 class="subheading">Problems look mighty small from 150 miles up</h2>#}
+                        <span class="meta" style="font-size: medium;font-family: tanha;padding-top: 20px">
+                                نوشته شده توسط
+                                <a href="#!" style="color: #6a1a21">{{ article.author.get_full_name }}</a>
+                            </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content-->
+    <article class="mb-4">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+<p style="font-family: tanha;font-size: large">
+    {{ article.descriptions|linebreaksbr }}
+</p>
+                </div>
+            </div>
+        </div>
+    </article>
+
+{% endblock %}
