@@ -17,12 +17,11 @@ class EscapeRoom(models.Model):
     price = models.IntegerField()
     description = models.TextField()
     story = models.TextField()
-    number_of_players = models.IntegerField()
     city = models.CharField(max_length=1, choices=city_choices)
+    hardship = models.IntegerField(null=True)
     age = models.IntegerField()
     genre = models.CharField(max_length=20)
     photo = models.ImageField(null=True, blank=True, upload_to='static/booking/images/')
-
     # location =
     def __str__(self):
         return f'{self.name}'
@@ -51,7 +50,7 @@ class ReserveDate(models.Model):
         return jd.fromgregorian(year=self.date.year, month=self.date.month, day=self.date.day)
 
     def __str__(self):
-        return f'{self.date}'
+        return f'{self.date} {self.name}'
 
 
 class ReserveTime(models.Model):
@@ -71,3 +70,6 @@ class ReserveTime(models.Model):
     player = models.ForeignKey(Player, on_delete=models.CASCADE, null=True, blank=True)
     game = models.ForeignKey(EscapeRoom, on_delete=models.CASCADE, null=True, blank=True)
     status = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.time} {self.date}'

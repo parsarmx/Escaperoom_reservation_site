@@ -4,7 +4,7 @@ from django.views import View
 from django.views.generic import ListView
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 from django.shortcuts import get_object_or_404
-
+import time as t
 from .models import *
 from .forms import *
 import datetime
@@ -29,11 +29,23 @@ def reserve_details(request, name):
                   {'games': games, 'day_list': day_list, 'today': today, 'date': dates, 'times': times})
 
 
-def ReservePage(request, name, time):
+def ReservePage(request, name, date, time):
     if request.method == "GET":
         form = RegisterForm(initial={'game': EscapeRoom.objects.all().get(name=name)})
+        reserve_time = ReserveTime.objects.all().get(date__date=date, time=time)
         return render(request, 'booking/reserve_page.html', {'form': form})
     if request.method == "POST":
         form = RegisterForm(request.POST)
-        if form.is_valid():
+        reserve_time = ReserveTime.objects.all().get(date__date=date, time=time)
+        if form.is_valid() and Player.objects.all().filter(phone=form.cleaned_data['phone'],
+                                                           email=form.cleaned_data['email']).count() != 1:
+            return HttpResponse('This Player exist')
+        elif form.is_valid() and reserve_time.status is False:
             form.save()
+            reserve_time.status = True
+            reserve_time.player = Player.objects.all().get(phone=form.cleaned_data['phone'],
+                                                           email=form.cleaned_data['email'])
+            reserve_time.game = EscapeRoom.objects.all().get(name=name)
+            reserve_time.save()
+        else:
+            return HttpResponse('<h1>Failed</h1>')
