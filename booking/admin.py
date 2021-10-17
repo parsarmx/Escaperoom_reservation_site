@@ -24,9 +24,6 @@ class DateAdmin(admin.ModelAdmin):
     list_display = [
         'j_date',
         'name',
-        'activate',
-        'reserved',
-        'player'
     ]
 
 
@@ -46,4 +43,7 @@ class Time(admin.ModelAdmin):
     list_display = [
         'time',
         'date',
+        'player',
+        'game',
+        'status'
     ]
