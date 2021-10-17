@@ -15,7 +15,7 @@ import jdatetime
 # Create your views here.
 class home(ListView):
     model = EscapeRoom
-    template_name = 'booking/index.html'
+    template_name = 'booking/home.html'
 
 
 def reserve_details(request, name):
