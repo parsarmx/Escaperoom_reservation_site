@@ -1,9 +1,9 @@
 from django import forms
+from .models import Player
 
 
-class RegisterForm(forms.Form):
-    name = forms.CharField()
-    last_name = forms.CharField()
-    phone_number = forms.CharField()
-    email = forms.EmailField()
-    number_of_players = forms.IntegerField()
+class RegisterForm(forms.ModelForm):
+
+    class Meta:
+        model = Player
+        fields = ('name', 'last_name', 'number_of_players', 'phone', 'email', 'game')

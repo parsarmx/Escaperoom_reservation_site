@@ -20,7 +20,7 @@ class home(ListView):
 
 def reserve_details(request, name):
     games = EscapeRoom.objects.all().get(name=name)
-    dates = ReserveDate.objects.all()
+    dates = ReserveDate.objects.filter(name__name=name)
     today = jdatetime.date.today()
     times = ReserveTime.objects.all()
     day_list = [(today + jdatetime.timedelta(days=x)) for x in range(8)]
@@ -29,11 +29,11 @@ def reserve_details(request, name):
                   {'games': games, 'day_list': day_list, 'today': today, 'date': dates, 'times': times})
 
 
-class ReservePage(ListView):
-    model = Player
-    fields = ['name', 'last_name', 'email', 'number_of_players']
-    template_name = 'booking/reserve_page.html'
-
-
-
-
+def ReservePage(request, name, time):
+    if request.method == "GET":
+        form = RegisterForm(initial={'game': EscapeRoom.objects.all().get(name=name)})
+        return render(request, 'booking/reserve_page.html', {'form': form})
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()

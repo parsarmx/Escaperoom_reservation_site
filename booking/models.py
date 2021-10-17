@@ -25,7 +25,7 @@ class EscapeRoom(models.Model):
 
     # location =
     def __str__(self):
-        return f'بازی : {self.name}'
+        return f'{self.name}'
 
 
 class Player(models.Model):
