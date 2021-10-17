@@ -1,152 +1,9 @@
-<html class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths">
-<!--<![endif]-->
+<!DOCTYPE html>
+<html lang="en">
 <head>
-
-
-    {#    link and script in blog #}
-    {% include 'blog/Header & Footer Referens.html' %}
-
-
-    <style>.gm-control-active > img {
-        box-sizing: content-box;
-        display: none;
-        left: 50%;
-        pointer-events: none;
-        position: absolute;
-        top: 50%;
-        transform: translate(-50%, -50%)
-    }
-
-    .gm-control-active > img:nth-child(1) {
-        display: block
-    }
-
-    .gm-control-active:hover > img:nth-child(1), .gm-control-active:active > img:nth-child(1) {
-        display: none
-    }
-
-    .gm-control-active:hover > img:nth-child(2), .gm-control-active:active > img:nth-child(3) {
-        display: block
-    }
-    </style>
-    <link type="text/css" rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Google+Sans:400,500,700|Google+Sans+Text:400">
-    <link type="text/css" rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Google+Sans+Text:400&amp;text=%E2%86%90%E2%86%92%E2%86%91%E2%86%93">
-    <style>.gm-ui-hover-effect {
-        opacity: .6
-    }
-
-    .gm-ui-hover-effect:hover {
-        opacity: 1
-    }
-    </style>
-    <style>.gm-style .gm-style-cc a, .gm-style .gm-style-cc button, .gm-style .gm-style-cc span, .gm-style .gm-style-mtc div {
-        font-size: 10px;
-        box-sizing: border-box
-    }
-    </style>
-    <style>@media print {
-        .gm-style .gmnoprint, .gmnoprint {
-            display: none
-        }
-    }
-
-    @media screen {
-        .gm-style .gmnoscreen, .gmnoscreen {
-            display: none
-        }
-    }</style>
-    <style>.dismissButton {
-        background-color: #fff;
-        border: 1px solid #dadce0;
-        color: #1a73e8;
-        border-radius: 4px;
-        font-family: Roboto, sans-serif;
-        font-size: 14px;
-        height: 36px;
-        cursor: pointer;
-        padding: 0 24px
-    }
-
-    .dismissButton:hover {
-        background-color: rgba(66, 133, 244, 0.04);
-        border: 1px solid #d2e3fc
-    }
-
-    .dismissButton:focus {
-        background-color: rgba(66, 133, 244, 0.12);
-        border: 1px solid #d2e3fc;
-        outline: 0
-    }
-
-    .dismissButton:focus:not(:focus-visible) {
-        background-color: #fff;
-        border: 1px solid #dadce0;
-        outline: none
-    }
-
-    .dismissButton:focus-visible {
-        background-color: rgba(66, 133, 244, 0.12);
-        border: 1px solid #d2e3fc;
-        outline: 0
-    }
-
-    .dismissButton:hover:focus {
-        background-color: rgba(66, 133, 244, 0.16);
-        border: 1px solid #d2e2fd
-    }
-
-    .dismissButton:hover:focus:not(:focus-visible) {
-        background-color: rgba(66, 133, 244, 0.04);
-        border: 1px solid #d2e3fc
-    }
-
-    .dismissButton:hover:focus-visible {
-        background-color: rgba(66, 133, 244, 0.16);
-        border: 1px solid #d2e2fd
-    }
-
-    .dismissButton:active {
-        background-color: rgba(66, 133, 244, 0.16);
-        border: 1px solid #d2e2fd;
-        box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15)
-    }
-
-    .dismissButton:disabled {
-        background-color: #fff;
-        border: 1px solid #f1f3f4;
-        color: #3c4043
-    }
-    </style>
-    <style>.gm-style-moc {
-        background-color: rgba(0, 0, 0, 0.45);
-        pointer-events: none;
-        text-align: center;
-        transition: opacity ease-in-out
-    }
-
-    .gm-style-mot {
-        color: white;
-        font-family: Roboto, Arial, sans-serif;
-        font-size: 22px;
-        margin: 0;
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%);
-        -webkit-transform: translateY(-50%);
-        -ms-transform: translateY(-50%)
-    }
-    </style>
-    <style>.gm-style img {
-        max-width: none;
-    }
-
-    .gm-style {
-        font: 400 11px Roboto, Arial, sans-serif;
-        text-decoration: none;
-    }</style>
-    <title>Escapee</title>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>home</title>
 
     <!-- meta -->
     <meta charset="utf-8">
@@ -154,102 +11,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- stylesheets -->
-    <link rel="stylesheet" href="/static/booking/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/booking/font_icon/css/pe-icon-7-stroke.css">
-    <link rel="stylesheet" href="/static/booking/font_icon/css/helper.css">
-    <link rel="stylesheet" href="/static/booking/css/owl.carousel.css">
-    <link rel="stylesheet" href="/static/booking/css/owl.theme.css">
-    <link rel="stylesheet" href="/static/booking/css/animate.css">
-    <link rel="stylesheet" href="/static/booking/css/style.css">
-    {#    <link rel="stylesheet" href="/static/booking/css/card/s">#}
+    <link rel="stylesheet" href="{% static 'booking/css/scroll_bar.css' %}">
+    <link rel="stylesheet" href="{% static 'booking/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'booking/font_icon/css/pe-icon-7-stroke.css' %}">
+    <link rel="stylesheet" href="{% static 'booking/font_icon/css/helper.css' %}">
+    <link rel="stylesheet" href="{% static 'booking/css/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'booking/css/owl.theme.css' %}">
+    <link rel="stylesheet" href="{% static 'booking/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'booking/css/style.css' %}">
 
     <!-- google fonts -->
-    <link href="http://fonts.googleapis.com/css?family=Dosis:200,300,400,500|Lato:300,400,700,900,300italic,400italic,700italic,900italic|Raleway:400,200,300,500,100|Titillium+Web:400,200,300italic,300,200italic"
-          rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Dosis:200,300,400,500|Lato:300,400,700,900,300italic,400italic,700italic,900italic|Raleway:400,200,300,500,100|Titillium+Web:400,200,300italic,300,200italic'
+          rel='stylesheet' type='text/css'>
 
-    <script src="/static/booking/js/modernizr.js"></script>
+    <script src="{% static 'booking/js/modernizr.js' %}"></script>
 
-    <script type="text/javascript" charset="UTF-8"
-            src="https://maps.googleapis.com/maps-api-v3/api/js/46/6/common.js"></script>
-    <script type="text/javascript" charset="UTF-8"
-            src="https://maps.googleapis.com/maps-api-v3/api/js/46/6/util.js"></script>
-    <script type="text/javascript" charset="UTF-8"
-            src="https://maps.googleapis.com/maps-api-v3/api/js/46/6/map.js"></script>
-    <script type="text/javascript" charset="UTF-8"
-            src="https://maps.googleapis.com/maps-api-v3/api/js/46/6/controls.js"></script>
-    <script type="text/javascript" charset="UTF-8"
-            src="https://maps.googleapis.com/maps-api-v3/api/js/46/6/onion.js"></script>
 </head>
-<body id="body">
-<div id="StayFocusd-infobar" style="display:none;">
-    <img src="chrome-extension://laankejkbhbdhmipfmgcngdelahlfoji/common/img/eye_19x19_red.png">
-    <span id="StayFocusd-infobar-msg"></span>
-    <span id="StayFocusd-infobar-links">
-        <a id="StayFocusd-infobar-never-show">hide forever</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-        <a id="StayFocusd-infobar-hide">hide once</a>
-    </span>
-</div>
-<!--[if lt IE 7]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-    your browser</a> to improve your experience.</p>
-<![endif]-->
-
-<!-- Header area -->
-
-<!-- Navigation area -->
-<section id="navigation">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-6">
-                <div class="logo"><a data-scroll="" href="#body" class="logo-text">Escapee.ir</a></div>
-            </div>
-            <div class="col-xs-6">
-                <div class="nav">
-                    <a href="#" data-placement="bottom" title="Menu" class="menu" data-toggle="dropdown"
-                       aria-expanded="false"><i class="pe-7s-menu"></i></a>
-                    <div class="dropdown-menu">
-                        <div class="arrow-up"></div>
-                        <ul>
-                            <li><a data-scroll="" href="#body">Home <i class="pe-7s-home"></i></a><span
-                                    class="menu-effect"></span></li>
-                            <li><a data-scroll="" href="#services">Service <i class="pe-7s-config"></i></a><span
-                                    class="menu-effect"></span></li>
-                            <li><a data-scroll="" href="#portfolio">Portfolio <i class="pe-7s-glasses"></i></a><span
-                                    class="menu-effect"></span></li>
-                            <li><a data-scroll="" href="#testimonial">Testimonial <i class="pe-7s-comment"></i><span
-                                    class="menu-effect"></span></a></li>
-                            <li><a data-scroll="" href="#contact">Contact <i class="pe-7s-help1"></i></a><span
-                                    class="menu-effect"></span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
+<body>
 
 {% block content %}
 {% endblock %}
 
-
 <!-- Footer Area -->
 
-{#<footer>#}
-{#    <div class="container">#}
-{##}
-{#    </div>#}
-{#</footer>#}
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <p class="copyright">© Copyright 2021 <a href="#" target="_blank">syntgram.ir</a></p>
+            </div>
+            <div class="col-sm-6">
+                <p class="designed">This Website made by <a href="https://themewagon.com" target="_blank">SYNTGRAM</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
 
-<!-- Necessery scripts -->
-<script src="/static/booking/js/jquery-2.1.3.min.js"></script>
-<script src="/static/booking/js/bootstrap.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-<script src="/static/booking/js/jquery.actual.min.js"></script>
-<script src="/static/booking/js/smooth-scroll.js"></script>
-<script src="/static/booking/js/owl.carousel.js"></script>
-<script src="/static/booking/js/script.js"></script>
-
-
+<!-- Necessary scripts -->
+<script src="{% static 'booking/js/jquery-2.1.3.min.js' %}"></script>
+<script src="{% static 'booking/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'booking/js/jquery.actual.min.js' %}"></script>
+<script src="{% static 'booking/js/smooth-scroll.js' %}"></script>
+<script src="{% static 'booking/js/owl.carousel.js' %}"></script>
+<script src="{% static 'booking/js/script.js' %}"></script>
 </body>
 </html>
