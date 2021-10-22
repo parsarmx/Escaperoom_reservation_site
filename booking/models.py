@@ -8,20 +8,22 @@ import datetime
 # EscapeRoom model
 class EscapeRoom(models.Model):
     city_choices = (
-        ('K', 'Karaj'),
-        ('T', 'Tehran')
+        ('کرج', 'کرج'),
+        ('تهران', 'تهران')
     )
 
     name = models.CharField(max_length=50)
     time = models.IntegerField()
-    price = models.IntegerField()
+    price_per_player = models.IntegerField()
+    pre_price = models.IntegerField(null=True)
     description = models.TextField()
     story = models.TextField()
-    city = models.CharField(max_length=1, choices=city_choices)
+    city = models.CharField(max_length=5, choices=city_choices)
     hardship = models.IntegerField(null=True)
     age = models.IntegerField()
     genre = models.CharField(max_length=20)
     photo = models.ImageField(null=True, blank=True, upload_to='static/booking/images/')
+
     # location =
     def __str__(self):
         return f'{self.name}'
@@ -72,4 +74,4 @@ class ReserveTime(models.Model):
     status = models.BooleanField(default=False)
 
     def __str__(self):
-        return f'{self.time} {self.date}'
+        return f'{self.time}'

@@ -1,15 +1,21 @@
 {% extends 'booking/base.html' %}
 
-{% block content %}
+{% block header %}
+
     <!-- Header area -->
     <header id="header">
         <div class="center text-center">
-{#            <h1 class="bigheadline">ESCAPEE</h1>#}
-{#            <h4 class="subheadline">یک اسکیپ روم متفاوت</h4>#}
+            {#            <h1 class="bigheadline">ESCAPEE</h1>#}
+            {#            <h4 class="subheadline">یک اسکیپ روم متفاوت</h4>#}
+        </div>
+        <div class="bottom">
+            <a data-scroll href="#navigation" class="scrollDown animated pulse" id="scrollToContent"><i
+                    class="pe-7s-angle-down-circle pe-va"></i></a>
         </div>
     </header>
     <!-- Content Area -->
-
+{% endblock %}
+{% block content %}
     <!-- Portfolio Area -->
 
     <section id="portfolio" class="portfolio-area">
@@ -23,7 +29,7 @@
                             <figcaption>
                                 <h3>{{ game.name }}</h3>
                                 <span>ESCAPEE</span>
-                                <a href="#" class="button">رزرو</a>
+                                <a href="{% url 'reserve' game.name %}" class="button">رزرو</a>
                             </figcaption>
                         </figure>
                     </div>
@@ -38,28 +44,23 @@
         <div id="googleMap" style="width:100%;"></div>
         <div id="contact-area">
             <div class="container">
-                <h2 class="block_title">Hey !!!</h2>
+                <h2 class="block_title">!!! سلام</h2>
                 <div class="row">
                     <div class="col-xs-12">
                     </div>
                     <div class="col-sm-6">
                         <div class="moreDetails">
-                            <h2 class="con-title">More About me</h2>
-                            <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum animi repudiandae
-                                nihil aspernatur repellat temporibus doloremque sint ea laboriosam, excepturi iure
-                                inventore rerum voluptatibus, suscipit totam, sit necessitatibus. Rerum,
-                                blanditiis. </p>
                             <ul class="address">
-                                <li><i class="pe-7s-map-marker"></i><span>1600 Pennsylvania Ave NW,<br>Washington, DC 20500,<br>United States</span>
+                                <li><i class="pe-7s-map-marker"></i><span>کرج<br>گوهردشت<br>خیابان داریوش</span>
                                 </li>
                                 <li><i class="pe-7s-mail"></i><span>example@gmail.com</span></li>
                                 <li><i class="pe-7s-phone"></i><span>+1-202-555-0144</span></li>
-                                <li><i class="pe-7s-global"></i><span><a href="#">www.themewagon.com</a></span></li>
+                                <li><i class="pe-7s-global"></i><span><a href="#">www.escapee.ir</a></span></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <h2 class="con-title">Drop us a line</h2>
+                        <h2 class="con-title">با ما در ارتباط باشید</h2>
                         <form role="form">
                             <div class="form-group">
                                 <label for="user_name"></label><input type="text" class="form-control" id="user_name"

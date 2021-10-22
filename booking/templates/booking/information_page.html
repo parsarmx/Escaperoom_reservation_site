@@ -1,0 +1,14 @@
+{% extends 'booking/base.html' %}
+{% block content %}
+<form method="POST" class="post-form">{% csrf_token %}
+    <p style="margin-top: 100px">ok</p>
+    {{ form.name }}
+    {{ form.last_name }}
+    {{ form.number_of_players }}
+    {{ form.phone }}
+    {{ form.email }}
+    {{ form.game }}
+
+    <button type="submit" class="save btn btn-default">Save</button>
+</form>
+{% endblock %}

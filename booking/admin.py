@@ -8,7 +8,8 @@ class EscapeAdmin(admin.ModelAdmin):
     list_display = [
         'name',
         'time',
-        'price',
+        'price_per_player',
+        'pre_price',
         'description',
         'story',
         'city',

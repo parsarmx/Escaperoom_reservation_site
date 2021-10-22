@@ -1,0 +1,136 @@
+{% extends 'booking/base.html' %}
+{% load static %}
+<body>
+{% block content %}
+    <link rel="stylesheet" href="{% static 'booking/css/style-info.css' %}">
+        <dl style="margin-top: 120px;">
+            {% for d in dates %}
+                <dt>{{ d.jd_create_datetime }}</dt>
+                {% for time in times %}
+                    {% if time.date == d %}
+                        <div class="">
+                            <button>
+                                <a href="{% url 'reserve_page' d.name d.date time.time %}"
+                                   class="button">{{ time.time }}</a>
+                            </button>
+                        </div>
+
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </dl>
+    <div class="slider-wrapper">
+        <div class="slider">
+            <input type="radio" name="slider" class="trigger" id="one" checked="checked"/>
+            <div class="slide">
+                <figure class="slide-figure">
+                    <img class="slide-img" src="{{ games.photo.url }}" alt="{{ games.name }}" style="width: 450px"/>
+                    <figcaption class="slide-caption">
+                    </figcaption>
+                </figure>
+            </div>
+            <input type="radio" name="slider" class="trigger" id="two"/>
+            <div class="slide">
+                <figure class="slide-figure">
+                    <img class="slide-img" src="" alt=""/>
+                    <figcaption class="slide-caption">
+                    </figcaption>
+                </figure>
+            </div>
+            <input type="radio" name="slider" class="trigger" id="three"/>
+            <div class="slide">
+                <figure class="slide-figure">
+                    <img class="slide-img" src="" alt=""/>
+                    <figcaption class="slide-caption">
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+        <ul class="slider-nav">
+            <li class="slider-nav__item"><label class="slider-nav__label" for="one">1</label></li>
+            <li class="slider-nav__item"><label class="slider-nav__label" for="two">2</label></li>
+            <li class="slider-nav__item"><label class="slider-nav__label" for="three">3</label></li>
+        </ul>
+    </div>
+
+
+
+
+
+
+    <!--------------------------------------->
+
+
+
+
+
+
+
+
+
+    <main class="main-structure">
+        <div class="paragraph">
+
+            <h1>
+                داستان
+            </h1>
+            <p style="direction: rtl; font-size: 20px">
+                {{ games.story }}
+            </p>
+        </div>
+    </main>
+
+    <!----progress bar--->
+    <section class="main-footer-info">
+        <div class="container">
+            <div class="card">
+                <div class="box">
+                    <div class="percent">
+                        <svg>
+                            <circle cx="70" cy="70" r="70"></circle>
+                            <circle cx="70" cy="70" r="70"></circle>
+                        </svg>
+                        <div class="num">
+                            <h2>{{ games.hardship }}<span>%</span></h2>
+                        </div>
+                    </div>
+                    <h2 class="text">درجه سختی</h2>
+                </div>
+            </div>
+        </div>
+        <!--progress bar-->
+
+
+        <!--table box-->
+        <div class="info-box">
+            <table style="direction: rtl" class=".info-table">
+                <td><span>{{ games.city }}</span></td>
+                <td>شهر</td>
+                <tr>
+                    <td><span>  {{ games.time }} دقیقه </span></td>
+                    <td> زمان بازی</td>
+                <tr>
+                    <td><span>{{ games.pre_price }} تومان </span></td>
+                    <td>مبلغ پیش پرداخت</td>
+                </tr>
+                <tr>
+                    <td><span>{{ games.price_per_player }}  تومان</span></td>
+                    <td>مبلغ کل به ازاری هر نفر</td>
+                </tr>
+            </table>
+            <div class="booking-button">
+                <a href="#">
+                    <button>
+                        <i class="fas fa-calendar-check"></i>
+                        رزرو
+                    </button>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!--end of the flex div-->
+
+
+    <!--end of the table box-->
+{% endblock %}
+</body>
