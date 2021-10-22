@@ -18,7 +18,11 @@
     <link rel="stylesheet" href="{% static 'booking/css/owl.carousel.css' %}">
     <link rel="stylesheet" href="{% static 'booking/css/owl.theme.css' %}">
     <link rel="stylesheet" href="{% static 'booking/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'booking/css/nav_style.css' %}">
     <link rel="stylesheet" href="{% static 'booking/css/style.css' %}">
+{#    <link rel="stylesheet" href="{% static 'booking/css/style-info.css' %}">#}
+    <script src="https://kit.fontawesome.com/0ca3d9bd94.js" crossorigin="anonymous"></script>
+
 
     <!-- google fonts -->
     <link href='https://fonts.googleapis.com/css?family=Dosis:200,300,400,500|Lato:300,400,700,900,300italic,400italic,700italic,900italic|Raleway:400,200,300,500,100|Titillium+Web:400,200,300italic,300,200italic'
@@ -28,6 +32,30 @@
 
 </head>
 <body>
+{% block header %}
+{% endblock %}
+<!-- Nav Area -->
+
+<section id="navigation">
+    <nav class="navbar" style="margin-bottom: 00px;">
+        <div class="brand-title"><h1><a href="">ESCAPEE.ir</a></h1></div>
+        <a href="#" class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+        <div class="navbar-links">
+            <ul>
+                <li><a href="#">خانه</a></li>
+                <li><a href="#">درباره</a></li>
+                <li><a href="#">ارتباط با ما</a></li>
+                <li><a href="#">بلاگ</a></li>
+                <li><a href="#">بیشتر</a></li>
+            </ul>
+        </div>
+    </nav>
+</section>
+
 
 {% block content %}
 {% endblock %}
@@ -41,7 +69,8 @@
                 <p class="copyright">© Copyright 2021 <a href="#" target="_blank">syntgram.ir</a></p>
             </div>
             <div class="col-sm-6">
-                <p class="designed">This Website made by <a href="https://themewagon.com" target="_blank">SYNTGRAM</a></p>
+                <p class="designed">This Website made by <a href="https://themewagon.com" target="_blank">SYNTGRAM</a>
+                </p>
             </div>
         </div>
     </div>
@@ -54,5 +83,8 @@
 <script src="{% static 'booking/js/smooth-scroll.js' %}"></script>
 <script src="{% static 'booking/js/owl.carousel.js' %}"></script>
 <script src="{% static 'booking/js/script.js' %}"></script>
+<script src="{% static 'booking/js/nav_script.js' %}" defer></script>
+<script src="{% static 'booking/js/script-info.js' %}" defer></script>
+<script src='https://use.edgefonts.net/eater.js'></script>
 </body>
 </html>

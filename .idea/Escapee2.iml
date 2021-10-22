@@ -23,6 +23,8 @@
     <orderEntry type="library" name="map" level="application" />
     <orderEntry type="library" name="controls" level="application" />
     <orderEntry type="library" name="onion" level="application" />
+    <orderEntry type="library" name="eater" level="application" />
+    <orderEntry type="library" name="0ca3d9bd94" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
