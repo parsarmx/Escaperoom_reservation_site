@@ -1,14 +1,26 @@
 {% extends 'booking/base.html' %}
-{% block content %}
-<form method="POST" class="post-form">{% csrf_token %}
-    <p style="margin-top: 100px">ok</p>
-    {{ form.name }}
-    {{ form.last_name }}
-    {{ form.number_of_players }}
-    {{ form.phone }}
-    {{ form.email }}
-    {{ form.game }}
 
-    <button type="submit" class="save btn btn-default">Save</button>
-</form>
+{% block content %}
+
+    <form method="POST" class="post-form" style="text-align: center;">{% csrf_token %}
+        <p style="margin-top: 100px">ok</p>
+        <p>نام</p>
+        {{ form.name }}
+        <p></p>
+        <p>نام خانوادگی</p>
+        {{ form.last_name }}
+        <p></p>
+        <p>تعداد</p>
+        {{ form.number_of_players }}
+        <p></p>
+        <p>شماره موبایل</p>
+        {{ form.phone }}
+        <p></p>
+        <p>ایمیل</p>
+        {{ form.email }}
+        <p></p>
+        <button hidden>{{ form.game }}</button>
+
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
 {% endblock %}

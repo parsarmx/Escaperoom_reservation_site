@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="{% static 'booking/css/animate.css' %}">
     <link rel="stylesheet" href="{% static 'booking/css/nav_style.css' %}">
     <link rel="stylesheet" href="{% static 'booking/css/style.css' %}">
+    {% block head %}
+    {% endblock %}
 {#    <link rel="stylesheet" href="{% static 'booking/css/style-info.css' %}">#}
     <script src="https://kit.fontawesome.com/0ca3d9bd94.js" crossorigin="anonymous"></script>
 
@@ -85,6 +87,9 @@
 <script src="{% static 'booking/js/script.js' %}"></script>
 <script src="{% static 'booking/js/nav_script.js' %}" defer></script>
 <script src="{% static 'booking/js/script-info.js' %}" defer></script>
+
+{% block script %}
+{% endblock %}
 <script src='https://use.edgefonts.net/eater.js'></script>
 </body>
 </html>
