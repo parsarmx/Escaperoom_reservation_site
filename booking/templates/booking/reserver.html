@@ -1,24 +1,32 @@
 {% extends 'booking/base.html' %}
 {% load static %}
 <body>
+{% block head %}
+        <link rel="stylesheet" href="{% static 'booking/css/style-info.css' %}">
+{% endblock %}
 {% block content %}
-    <link rel="stylesheet" href="{% static 'booking/css/style-info.css' %}">
-        <dl style="margin-top: 120px;">
-            {% for d in dates %}
-                <dt>{{ d.jd_create_datetime }}</dt>
-                {% for time in times %}
-                    {% if time.date == d %}
-                        <div class="">
-                            <button>
-                                <a href="{% url 'reserve_page' d.name d.date time.time %}"
-                                   class="button">{{ time.time }}</a>
-                            </button>
-                        </div>
 
+    <dl style="margin-top: 120px; text-align: center">
+        {% for d in dates %}
+            <dt>{{ d.jd_create_datetime }}</dt>
+            {% for time in times %}
+                {% if time.date == d %}
+                    <div class="">
+                    {% if time.status == True %}
+                        <button disabled class="bg-dark" href="#">
+                        {{ time.time }}
+                        </button>
+                    {% else %}
+                        <button class="booking-button">
+                            <a href="{% url 'reserve_page' d.name d.date time.time %}" class="button"> {{ time.time }}</a>
+                        </button>
                     {% endif %}
-                {% endfor %}
+                    </div>
+
+                {% endif %}
             {% endfor %}
-        </dl>
+        {% endfor %}
+    </dl>
     <div class="slider-wrapper">
         <div class="slider">
             <input type="radio" name="slider" class="trigger" id="one" checked="checked"/>
