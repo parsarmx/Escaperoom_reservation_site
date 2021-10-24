@@ -60,11 +60,20 @@ class ReserveTime(models.Model):
         (datetime.time(12, 00), '12:00'), (datetime.time(12, 15), '12:15'), (datetime.time(12, 30), '12:30'),
         (datetime.time(12, 45), '12:45'), (datetime.time(13, 00), '13:00'), (datetime.time(13, 15), '13:15'),
         (datetime.time(13, 30), '13:30'), (datetime.time(13, 45), '13:45'), (datetime.time(14, 00), '14:00'),
-        (datetime.time(14, 15), '14:15'), (datetime.time(14, 30), '13:30'), (datetime.time(14, 45), '14:45'),
-        (datetime.time(15, 00), '15:00'), (datetime.time(15, 15), '15:15'), (datetime.time(15, 45), '15:45'),
-        (datetime.time(16, 00), '16:00'), (datetime.time(16, 15), '16:15'), (datetime.time(16, 30), '16:45'),
-        (datetime.time(17, 00), '17:00'), (datetime.time(17, 15), '17:15'), (datetime.time(17, 30), '17:30'),
-
+        (datetime.time(14, 15), '14:15'), (datetime.time(14, 30), '14:30'), (datetime.time(14, 45), '14:45'),
+        (datetime.time(15, 00), '15:00'), (datetime.time(15, 15), '15:15'), (datetime.time(15, 30), '15:30'),
+        (datetime.time(15, 45), '15:45'), (datetime.time(16, 00), '16:00'), (datetime.time(16, 15), '16:15'),
+        (datetime.time(16, 30), '16:30'), (datetime.time(16, 45), '16:45'), (datetime.time(17, 00), '17:00'),
+        (datetime.time(17, 15), '17:15'),
+        (datetime.time(17, 30), '17:30'), (datetime.time(17, 45), '17:45'), (datetime.time(18, 00), '18:00'),
+        (datetime.time(18, 15), '18:15'), (datetime.time(18, 30), '18:30'), (datetime.time(18, 45), '18:45'),
+        (datetime.time(19, 00), '19:00'), (datetime.time(19, 15), '19:15'), (datetime.time(19, 30), '19:30'),
+        (datetime.time(19, 45), '19:45'), (datetime.time(20, 00), '20:00'), (datetime.time(20, 15), '20:15'),
+        (datetime.time(20, 30), '20:30'), (datetime.time(20, 45), '20:45'), (datetime.time(21, 00), '21:00'),
+        (datetime.time(21, 15), '21:15'), (datetime.time(21, 30), '21:30'),
+        (datetime.time(21, 45), '21:45'), (datetime.time(22, 00), '22:00'), (datetime.time(22, 15), '22:15'),
+        (datetime.time(22, 30), '22:30'), (datetime.time(22, 45), '22:45'), (datetime.time(23, 00), '23:00'),
+        (datetime.time(23, 15), '23:15'), (datetime.time(23, 30), '23:30'), (datetime.time(23, 45), '23:45'),
     )
 
     time = models.TimeField(choices=TIME_CHOICES)

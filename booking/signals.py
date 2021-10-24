@@ -4,7 +4,7 @@ from django.db.models.signals import post_save, pre_save
 from django.core.signals import request_started
 from django.dispatch import receiver
 from .models import ReserveTime
-from .reservation_sms import send_message
+from .reservation_sms import send_message_to_player, send_message_to_ESCAPEE
 from jdatetime import date as jd
 from .date_convertor import week_day_convert, month_convertor
 
@@ -13,7 +13,8 @@ from .date_convertor import week_day_convert, month_convertor
 def show(sender, instance, **kwargs):
     try:
         player = ReserveTime.objects.get(time=str(instance)).player.name
-        time = ReserveTime.objects.get(time=str(instance))
+        # it returns time and slice the second part of time
+        time = str(ReserveTime.objects.get(time=str(instance)))[:5]
         phone = ReserveTime.objects.get(time=str(instance)).player.phone
         year = ReserveTime.objects.get(time=str(instance)).date.date.year
         month = ReserveTime.objects.get(time=str(instance)).date.date.month
@@ -21,13 +22,17 @@ def show(sender, instance, **kwargs):
 
         # this part convert the gregorian datetime to jalali date time using year, month and day
         j_date = jd.fromgregorian(year=year, month=month, day=day)
-
+        j_date_str = j_date.strftime('%d %m %Y')
         # this part convert the weekday and month to persian weekday using date_convertor
         j_weekday = week_day_convert(j_date.strftime('%A'))
-        j_month = month_convertor(j_date.strftime('%-m'))
+        j_month = month_convertor(int(j_date.strftime('%-m')))
         j_day = j_date.strftime('%-d')
-
-        print(f'player:{str(player)}\nphone:{phone}\ntime:{time}\ndate:{str(j_date)}')
-        return send_message(phone, player, j_month, j_day, j_weekday, time)
+        print(f'player:{str(player)}\n'
+              f'phone:{phone}\n'
+              f'time:{time}\n'
+              f'date:{str(j_date)}\n'
+              f'{j_month}\n')
+        return send_message_to_player(phone, player, j_month, j_day, j_weekday, time), \
+               send_message_to_ESCAPEE(phone, player, j_date_str, time)
     except AttributeError:
         print('except')

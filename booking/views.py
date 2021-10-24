@@ -42,9 +42,12 @@ def ReservePage(request, name, date, time):
         reserve_time = ReserveTime.objects.all().get(date__date=date, time=time)
 
         # this field checks if a player exist ; player will choose form the existent model
-        if form.is_valid() and Player.objects.all().filter(phone=form.cleaned_data['phone']).count() != 0:
+        if form.is_valid() and Player.objects.all().filter(
+                phone=form.cleaned_data['phone'].replace(" ", "")).count() != 0:
+
             reserve_time.status = True
-            reserve_time.player = reserve_time.player = Player.objects.all().get(phone=form.cleaned_data['phone'])
+            reserve_time.player = reserve_time.player = Player.objects.all().get(
+                phone=form.cleaned_data['phone'].replace(" ", ""))
 
             reserve_time.game = EscapeRoom.objects.all().get(name=name)
             reserve_time.save()
@@ -52,10 +55,10 @@ def ReservePage(request, name, date, time):
             return HttpResponse('رزرو شما انجام داده شد(2)')
         # this field create a player model if player dose not exist
         elif form.is_valid() and (reserve_time.status is False) and (Player.objects.all().filter(
-                phone=form.cleaned_data['phone']).count() == 0):
+                phone=form.cleaned_data['phone'].replace(" ", "")).count() == 0):
             form.save()
             reserve_time.status = True
-            reserve_time.player = Player.objects.all().get(phone=form.cleaned_data['phone'],
+            reserve_time.player = Player.objects.all().get(phone=form.cleaned_data['phone'].replace(" ", ""),
                                                            email=form.cleaned_data['email'])
             reserve_time.game = EscapeRoom.objects.all().get(name=name)
             reserve_time.save()
