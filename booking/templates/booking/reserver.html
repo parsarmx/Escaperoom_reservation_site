@@ -2,143 +2,114 @@
 {% load static %}
 <body>
 {% block head %}
-        <link rel="stylesheet" href="{% static 'booking/css/style-info.css' %}">
+    <link rel="stylesheet" href="{% static 'booking/css/style-info.css' %}">
 {% endblock %}
 {% block content %}
 
-    <dl style="margin-top: 120px; text-align: center">
-        {% for d in dates %}
-            <dt>{{ d.jd_create_datetime }}</dt>
-            {% for time in times %}
-                {% if time.date == d %}
-                    <div class="">
-                    {% if time.status == True %}
-                        <button disabled class="bg-dark" href="#">
-                        {{ time.time }}
-                        </button>
-                    {% else %}
-                        <button class="booking-button">
-                            <a href="{% url 'reserve_page' d.name d.date time.time %}" class="button"> {{ time.time }}</a>
-                        </button>
-                    {% endif %}
-                    </div>
-
-                {% endif %}
-            {% endfor %}
-        {% endfor %}
-    </dl>
-    <div class="slider-wrapper">
-        <div class="slider">
-            <input type="radio" name="slider" class="trigger" id="one" checked="checked"/>
-            <div class="slide">
-                <figure class="slide-figure">
-                    <img class="slide-img" src="{{ games.photo.url }}" alt="{{ games.name }}" style="width: 450px"/>
-                    <figcaption class="slide-caption">
-                    </figcaption>
-                </figure>
+    <main class="main-section">
+        <p style="margin-top: 40px; direction: ltr"></p>
+        <section class="progress-bar-and-game-image">
+            <div class="image-box">
+                <img src="{{ games.photo.url }}" alt="" class="image-room">
             </div>
-            <input type="radio" name="slider" class="trigger" id="two"/>
-            <div class="slide">
-                <figure class="slide-figure">
-                    <img class="slide-img" src="" alt=""/>
-                    <figcaption class="slide-caption">
-                    </figcaption>
-                </figure>
-            </div>
-            <input type="radio" name="slider" class="trigger" id="three"/>
-            <div class="slide">
-                <figure class="slide-figure">
-                    <img class="slide-img" src="" alt=""/>
-                    <figcaption class="slide-caption">
-                    </figcaption>
-                </figure>
-            </div>
-        </div>
-        <ul class="slider-nav">
-            <li class="slider-nav__item"><label class="slider-nav__label" for="one">1</label></li>
-            <li class="slider-nav__item"><label class="slider-nav__label" for="two">2</label></li>
-            <li class="slider-nav__item"><label class="slider-nav__label" for="three">3</label></li>
-        </ul>
-    </div>
-
-
-
-
-
-
-    <!--------------------------------------->
-
-
-
-
-
-
-
-
-
-    <main class="main-structure">
-        <div class="paragraph">
-
-            <h1>
-                داستان
-            </h1>
-            <p style="direction: rtl; font-size: 20px">
-                {{ games.story }}
-            </p>
-        </div>
-    </main>
-
-    <!----progress bar--->
-    <section class="main-footer-info">
-        <div class="container">
-            <div class="card">
-                <div class="box">
-                    <div class="percent">
-                        <svg>
-                            <circle cx="70" cy="70" r="70"></circle>
-                            <circle cx="70" cy="70" r="70"></circle>
-                        </svg>
-                        <div class="num">
-                            <h2>{{ games.hardship }}<span>%</span></h2>
+            <div class="container">
+                <div class="card">
+                    <div class="box">
+                        <div class="percent">
+                            <svg>
+                                <circle cx="70" cy="70" r="70"></circle>
+                                <circle cx="70" cy="70" r="70"></circle>
+                            </svg>
+                            <div class="num">
+                                <h2>{{ games.hardship }}<span>%</span></h2>
+                            </div>
                         </div>
+                        <h2 class="text">درجه سختی</h2>
                     </div>
-                    <h2 class="text">درجه سختی</h2>
                 </div>
             </div>
-        </div>
-        <!--progress bar-->
+        </section>
+        <!--------------------------------------->
+        <section class="paragraph">
+            <h1>
+                 سناریو بازی
+            </h1>
+            <p style="direction: rtl; font-size: 18px">
+                {{ games.story }}
 
+            </p>
+
+
+        </section>
 
         <!--table box-->
-        <div class="info-box">
+        <div class="table-box">
             <table style="direction: rtl" class=".info-table">
-                <td><span>{{ games.city }}</span></td>
+                <td><a href="#" class="location-table"><span>{{ games.city }}</span></a></td>
                 <td>شهر</td>
                 <tr>
-                    <td><span>  {{ games.time }} دقیقه </span></td>
+                    <td><span>{{ games.genre }}</span></td>
+                    <td>ژانر</td>
+                </tr>
+                <tr>
+                    <td><span>{{ games.time }} دقیقه</span></td>
                     <td> زمان بازی</td>
                 <tr>
-                    <td><span>{{ games.pre_price }} تومان </span></td>
+                    <td><span>{{ games.pre_price }} تومان</span></td>
                     <td>مبلغ پیش پرداخت</td>
                 </tr>
                 <tr>
-                    <td><span>{{ games.price_per_player }}  تومان</span></td>
+                    <td><span>{{ games.price_per_player }} تومان</span></td>
                     <td>مبلغ کل به ازاری هر نفر</td>
                 </tr>
+
             </table>
-            <div class="booking-button">
-                <a href="#">
-                    <button>
-                        <i class="fas fa-calendar-check"></i>
-                        رزرو
-                    </button>
-                </a>
-            </div>
         </div>
-    </section>
-    <!--end of the flex div-->
+        <!--date picker-->
+        <section class="main-date-picker-box">
+            <div class="booking-title"><span>سانس ها</span></div>
+            <div class="date-picker">
+                <div class="up-arrow-box">
+                    <abbr title="قبلی">
+                        <i class="fas fa-sort-up"></i>
+                    </abbr>
+                </div>
+                <div class="container-date">
+                    {% for d in dates %}
+                        <div class="date-section">
+                            <h3>
+                                {{ d.jd_week }}
+                                <br>
+                                {{ d.jd_day }}
+                                <br>
+                                {{ d.jd_month }}
+                            </h3>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="down-arrow-box">
+                    <abbr title=بعدی>
+                        <i class="fas fa-caret-down"></i>
+                    </abbr>
+                </div>
+            </div>
+            <div id="daily-program" class="dailyprogram-box">
+                <abbr title="انتخاب زمان">
+                    {% for t in times %}
+                        {% if t.status == True %}
+                            <button disabled class="cander-boxes" style="background-color: black">
+                                <a href="#"></a>
+                            </button>
+                        {% else %}
+                            <button class="bg-dark cander-boxes button"  href="{% url 'reserve-page' t.game t.date t.pk %}">
+                                {{ t.time }}
+                            </button>
 
-
-    <!--end of the table box-->
+                        {% endif %}
+                    {% endfor %}
+                </abbr>
+            </div>
+        </section>
+    </main>
 {% endblock %}
 </body>
