@@ -1,3 +1,4 @@
+
 let dailyProgram = document.querySelector("#daily-program");
 let boxes = document.querySelectorAll(".date-section");
 let changecolor = document.querySelectorAll(".date-section")
@@ -23,6 +24,7 @@ const visiblecalender = () => {
 
 visiblecalender();
 responisveofthenav();
+
 
 
 

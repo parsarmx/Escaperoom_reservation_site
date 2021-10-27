@@ -74,6 +74,7 @@ class ReserveDate(models.Model):
         return f'{self.date}'
 
 
+
 class ReserveTime(models.Model):
     TIME_CHOICES = (
         (datetime.time(12, 00), '12:00'), (datetime.time(12, 15), '12:15'), (datetime.time(12, 30), '12:30'),
@@ -102,4 +103,6 @@ class ReserveTime(models.Model):
     status = models.BooleanField(default=False)
 
     def __str__(self):
+
         return f'{self.pk}'
+

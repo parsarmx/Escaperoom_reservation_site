@@ -1,4 +1,6 @@
+
 from django.http import HttpResponse, Http404
+
 from django.shortcuts import render
 from django.views import View
 from django.views.generic import ListView
@@ -37,6 +39,7 @@ def reserve_details(request, name):
                   {'games': games, 'day_list': day_list, 'today': today, 'dates': dates, 'times': times})
 
 
+
 @api_view(['GET', 'POST'])
 def ReservePage(request, name=None, date=None, pk=None):
     tracking_code = request.GET.get(settings.TRACKING_CODE_QUERY_PARAM, None)
@@ -48,9 +51,11 @@ def ReservePage(request, name=None, date=None, pk=None):
     elif request.method == "POST":
         form = RegisterForm(request.POST)
 
+
         # this field checks if a player exist ; player will choose form the existent model
         if form.is_valid() and Player.objects.all().filter(
                 phone=form.cleaned_data['phone'].replace(" ", "")).count() != 0:
+
             e_name = str(EscapeRoom.objects.all().get(name=form.cleaned_data['game']))
             with open('booking/data_keeper.json', 'w') as file:
                 file.write(json.dumps({"name": e_name,
@@ -105,3 +110,4 @@ def go_to_gateway_view(request):
         logging.critical(e)
         # redirect to failed page.
         raise e
+
