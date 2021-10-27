@@ -3,6 +3,7 @@ from django.db import models
 from jalali_date import *
 from django_jalali.db import models as jmodels
 import datetime
+from .date_convertor import week_day_convert, month_convertor
 
 
 # EscapeRoom model
@@ -51,8 +52,27 @@ class ReserveDate(models.Model):
     def jd_create_datetime(self):
         return jd.fromgregorian(year=self.date.year, month=self.date.month, day=self.date.day)
 
+    def jd_week(self):
+        jalali = self.jd_create_datetime()
+        j_weekday = week_day_convert(jalali.strftime('%A'))
+        text = f'{j_weekday}'
+        return text
+
+    def jd_month(self):
+        jalali = self.jd_create_datetime()
+        j_month = month_convertor(int(jalali.strftime('%-m')))
+        text = f'{j_month}'
+        return text
+
+    def jd_day(self):
+        jalali = self.jd_create_datetime()
+        j_day = jalali.strftime('%-d')
+        text = f'{j_day}'
+        return text
+
     def __str__(self):
-        return f'{self.date} {self.name}'
+        return f'{self.date}'
+
 
 
 class ReserveTime(models.Model):
@@ -83,4 +103,6 @@ class ReserveTime(models.Model):
     status = models.BooleanField(default=False)
 
     def __str__(self):
-        return f'{self.time}'
+
+        return f'{self.pk}'
+

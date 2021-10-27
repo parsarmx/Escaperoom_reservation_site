@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 
+from booking import API_CODES
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'rest_framework',
+
+
+
     # app booking
     'booking.apps.BookingConfig',
 
@@ -45,6 +50,10 @@ INSTALLED_APPS = [
 
     # app Blog
     'Blog.apps.BlogConfig',
+
+    # bank
+    'azbankgateways',
+
 
 ]
 
@@ -160,3 +169,21 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AZ_IRANIAN_BANK_GATEWAYS = {
+    'GATEWAYS': {
+        'ZARINPAL': {
+            'MERCHANT_CODE': API_CODES.MERCHANT
+        },
+        'IS_SAMPLE_FORM_ENABLE': True,  # اختیاری و پیش فرض غیر فعال است
+        'DEFAULT': 'ZARINPAL',
+        'CURRENCY': 'IRR',  # اختیاری
+        'TRACKING_CODE_QUERY_PARAM': 'tc',  # اختیاری
+        'TRACKING_CODE_LENGTH': 16,  # اختیاری
+        'SETTING_VALUE_READER_CLASS': 'azbankgateways.readers.DefaultReader',  # اختیاری
+        'BANK_PRIORITIES': [
+            'ZARINPAL'
+            # and so on ...
+        ],  # اختیاری
+    }
+}

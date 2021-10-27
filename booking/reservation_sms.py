@@ -1,7 +1,10 @@
 from ippanel import Client
 from jdatetime import date as jd
 
-api_key = 'token from farazSMS'
+from .API_CODES import SMS
+
+api_key = SMS
+
 
 
 def send_message_to_player(phone_number, player_name, month, date, week_day, time):
