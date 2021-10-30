@@ -12,7 +12,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 
+DIRNAME = os.path.abspath(os.path.dirname(__file__))
+
 from booking import API_CODES
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -40,20 +43,17 @@ INSTALLED_APPS = [
 
     'rest_framework',
 
-
-
     # app booking
     'booking.apps.BookingConfig',
 
     # django jalali convertor
     'django_jalali',
 
-    # app Blog
-    'Blog.apps.BlogConfig',
-
     # bank
     'azbankgateways',
 
+    # user pre payment
+    'user_payment.apps.UserPaymentConfig'
 
 ]
 

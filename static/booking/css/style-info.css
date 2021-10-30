@@ -42,7 +42,7 @@ body {
 
 .brand-title h1 a:hover {
 
-    color: #FF0000;;
+    color: #FF0000;
 }
 
 .brand-title {
@@ -589,11 +589,12 @@ td span {
 }
 
 .cander-boxes {
-    width: 25%;
-    height: 9.5rem;
+    width: 150px;
+    height: 12rem;
     background-color: white;
     display: inline-block;
-    margin: 1rem 1rem;
+    margin-right: 40px;
+    margin-bottom:10px;
     position: relative;
     float: right;
     font-size: 2.2rem;
@@ -601,6 +602,7 @@ td span {
     cursor: pointer;
     color: black;
     overflow-y: hidden;
+    border-radius: 10%;
 }
 
 .cander-boxes:hover {
@@ -613,7 +615,9 @@ td span {
     .cander-boxes {
         width: 35%;
         font-size: 1.8rem;
-        height: 4.8rem;
+        height: 9.0rem;
+        margin-right: 25px;
+        border-radius: 10%;
     }
 
     .dailyprogram-box {
@@ -650,9 +654,7 @@ td span {
 
 
 .booking-button a button:hover {
-=======
-
-    opacity: 0.8;
+= = = = = = = opacity: 0.8;
     box-shadow: 2px 2px 5px 1.5px rgba(255, 246, 198, 0.25);
 
 }
@@ -666,7 +668,6 @@ td span {
 
     margin: 0 0.5rem 0.3rem 0;
 }
-
 
 
 #first-box.active {

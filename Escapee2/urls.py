@@ -21,5 +21,4 @@ urlpatterns = [
     path('', include('booking.urls')),
 
     # URL app Blog
-    path('blog/', include('Blog.urls')),
 ]

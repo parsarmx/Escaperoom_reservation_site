@@ -1,28 +1,53 @@
 {% extends 'booking/base.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'booking/css/form-style.css' %}">
+
+{% endblock %}
 
 {% block content %}
+    <p style="margin-bottom: 9%"></p>
+    <div class="shadow" style="margin-bottom: 7% ">
+        <main>
+            <form method="POST" class="post-form" style="text-align: center;">{% csrf_token %}
+                <div class="inputs-div">{{ form.name }}</div>
+                <div class="inputs-div">{{ form.last_name }}</div>
 
-    <form method="POST" class="post-form" style="text-align: center;">{% csrf_token %}
-        <p style="margin-top: 100px">ok</p>
-        <p>نام</p>
-        {{ form.name }}
-        <p></p>
-        <p>نام خانوادگی</p>
-        {{ form.last_name }}
-        <p></p>
-        <p>تعداد</p>
-        {{ form.number_of_players }}
-        <p></p>
-        <p>شماره موبایل</p>
-        {{ form.phone }}
-        <p></p>
-        <p>ایمیل</p>
-        {{ form.email }}
-        <p></p>
-        <button hidden>{{ form.game }}</button>
+                <div class="inputs-div">{{ form.email }}</div>
+                <div class="inputs-div">{{ form.phone }}</div>
+                <div class="inputs-div">{{ form.number_of_players }}</div>
+                <div hidden>{{ form.game }}</div>
+                <div class="btn-div">
+                    <div class="span-controller">
+                        <button type="submit" class="save btn btn-default">Save</button>
+                    </div>
+                </div>
+            </form>
+        </main>
+    </div>
 
 
-        <button type="submit" class="save btn btn-default">Save</button>
+    {#    <form method="POST" class="post-form" style="text-align: center;">{% csrf_token %}#}
+    {#        <p style="margin-top: 100px">ok</p>#}
+    {#        <p>نام</p>#}
+    {#        {{ form.name }}#}
+    {#        <p></p>#}
+    {#        <p>نام خانوادگی</p>#}
+    {#        {{ form.last_name }}#}
+    {#        <p></p>#}
+    {#        <p>تعداد</p>#}
+    {#        {{ form.number_of_players }}#}
+    {#        <p></p>#}
+    {#        <p>شماره موبایل</p>#}
+    {#        {{ form.phone }}#}
+    {#        <p></p>#}
+    {#        <p>ایمیل</p>#}
+    {#        {{ form.email }}#}
+    {#        <p></p>#}
+    {#        <button hidden>{{ form.game }}</button>#}
+    {##}
+    {##}
+    {#        <button type="submit" class="save btn btn-default">Save</button>#}
 
-    </form>
+
 {% endblock %}

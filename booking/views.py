@@ -1,6 +1,6 @@
-
 from django.http import HttpResponse, Http404
 
+from user_payment.models import PrePayment
 from django.shortcuts import render
 from django.views import View
 from django.views.generic import ListView
@@ -39,29 +39,42 @@ def reserve_details(request, name):
                   {'games': games, 'day_list': day_list, 'today': today, 'dates': dates, 'times': times})
 
 
-
-@api_view(['GET', 'POST'])
+# @api_view(['GET', 'POST'])
 def ReservePage(request, name=None, date=None, pk=None):
     tracking_code = request.GET.get(settings.TRACKING_CODE_QUERY_PARAM, None)
-    reserve_time = ReserveTime.objects.all().get(date__date=date, id=pk)
     if request.method == "GET" and not tracking_code:
         form = RegisterForm(initial={'game': EscapeRoom.objects.all().get(name=name)})
         return render(request, 'booking/information_page.html', {'form': form})
 
     elif request.method == "POST":
+        print('started', tracking_code)
         form = RegisterForm(request.POST)
-
-
+        time_searcher = ReserveTime.objects.all()
         # this field checks if a player exist ; player will choose form the existent model
-        if form.is_valid() and Player.objects.all().filter(
-                phone=form.cleaned_data['phone'].replace(" ", "")).count() != 0:
+        if form.is_valid() and Player.objects.all().filter(phone=form.cleaned_data['phone']).count() != 0:
 
             e_name = str(EscapeRoom.objects.all().get(name=form.cleaned_data['game']))
-            with open('booking/data_keeper.json', 'w') as file:
-                file.write(json.dumps({"name": e_name,
-                                       "date": date,
-                                       "pk": pk,
-                                       "phone": form.cleaned_data['phone'].replace(" ", "")}))
+
+            pre_payment = PrePayment.objects.create(name=e_name,
+                                                    date=date,
+                                                    time_id=pk,
+                                                    phone=form.cleaned_data['phone'].replace(" ", ""))
+
+            pre_payment.save()
+
+            return go_to_gateway_view(request)
+
+        elif form.is_valid() and Player.objects.all().filter(phone=form.cleaned_data['phone']).count() == 0:
+
+            e_name = str(EscapeRoom.objects.all().get(name=form.cleaned_data['game']))
+            form.save()
+
+            pre_payment = PrePayment.objects.create(name=e_name,
+                                                    date=date,
+                                                    time_id=pk,
+                                                    phone=form.cleaned_data['phone'].replace(" ", ""))
+            pre_payment.save()
+
             return go_to_gateway_view(request)
 
     try:
@@ -71,12 +84,15 @@ def ReservePage(request, name=None, date=None, pk=None):
         raise Http404
 
     if bank_record.is_success:
+        pre_payment = PrePayment.objects.latest()
+        reserve_time = ReserveTime.objects.all().get(date__date=pre_payment.date, id=pre_payment.time_id)
         reserve_time.status = True
-        file = open("booking/data_keeper.json", "r")
-        info = json.loads(file.read())
-        reserve_time.player = Player.objects.all().get(phone=info['phone'])
-        reserve_time.game = EscapeRoom.objects.all().get(name=info['name'])
+        print(pre_payment.phone.replace(" ", ""))
+        reserve_time.player = Player.objects.all().get(
+            phone=pre_payment.phone.replace(" ", ""))
+        reserve_time.game = EscapeRoom.objects.all().get(name=pre_payment.name)
         reserve_time.save()
+
         return HttpResponse('OK')
 
 
@@ -93,11 +109,9 @@ def go_to_gateway_view(request):
         bank.set_request(request)
         bank.set_amount(amount)
         # یو آر ال بازگشت به نرم افزار برای ادامه فرآیند
-        file = open("booking/data_keeper.json", "r")
-        info = json.loads(file.read())
+        pre_payment = PrePayment.objects.latest()
         bank.set_client_callback_url(
-            f"/reserve-page/{info['name']}/{info['date']}/{info['time']}/")
-        file.close()
+            f"/reserve-page/{pre_payment.name}/{pre_payment.date}/{pre_payment.time_id}/")
         bank.set_mobile_number(user_mobile_number)  # اختیاری
 
         # در صورت تمایل اتصال این رکورد به رکورد فاکتور یا هر چیزی که بعدا بتوانید ارتباط بین محصول یا خدمات را با این
@@ -110,4 +124,3 @@ def go_to_gateway_view(request):
         logging.critical(e)
         # redirect to failed page.
         raise e
-

@@ -74,7 +74,6 @@ class ReserveDate(models.Model):
         return f'{self.date}'
 
 
-
 class ReserveTime(models.Model):
     TIME_CHOICES = (
         (datetime.time(12, 00), '12:00'), (datetime.time(12, 15), '12:15'), (datetime.time(12, 30), '12:30'),

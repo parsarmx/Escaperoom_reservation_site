@@ -4,6 +4,11 @@
 {% block head %}
 
     <link rel="stylesheet" href="{% static 'booking/css/style-info.css' %}">
+    <link rel="stylesheet" href="{% static 'booking/css/reserve_date_picker_style.css' %}">
+
+    <script>
+
+    </script>
 {% endblock %}
 {% block content %}
 
@@ -33,7 +38,7 @@
         <!--------------------------------------->
         <section class="paragraph">
             <h1>
-                 سناریو بازی
+                سناریو بازی
             </h1>
             <p style="direction: rtl; font-size: 18px">
                 {{ games.story }}
@@ -45,7 +50,7 @@
 
         <!--table box-->
         <div class="table-box">
-            <table style="direction: rtl" class=".info-table">
+            <table style="direction: rtl;" class=".info-table">
                 <td><a href="#" class="location-table"><span>{{ games.city }}</span></a></td>
                 <td>شهر</td>
                 <tr>
@@ -67,50 +72,32 @@
             </table>
         </div>
         <!--date picker-->
-        <section class="main-date-picker-box">
-            <div class="booking-title"><span>سانس ها</span></div>
-            <div class="date-picker">
-                <div class="up-arrow-box">
-                    <abbr title="قبلی">
-                        <i class="fas fa-sort-up"></i>
-                    </abbr>
-                </div>
-                <div class="container-date">
-                    {% for d in dates %}
-                        <div class="date-section">
-                            <h3>
-                                {{ d.jd_week }}
-                                <br>
-                                {{ d.jd_day }}
-                                <br>
-                                {{ d.jd_month }}
-                            </h3>
-                        </div>
-                    {% endfor %}
-                </div>
-                <div class="down-arrow-box">
-                    <abbr title=بعدی>
-                        <i class="fas fa-caret-down"></i>
-                    </abbr>
-                </div>
-            </div>
-            <div id="daily-program" class="dailyprogram-box">
-                <abbr title="انتخاب زمان">
-                    {% for t in times %}
-                        {% if t.status == True %}
-                            <button disabled class="cander-boxes" style="background-color: black">
-                                <a href="#"></a>
-                            </button>
-                        {% else %}
-                            <button class="bg-dark cander-boxes button"  href="{% url 'reserve-page' t.game t.date t.pk %}">
-                                {{ t.time }}
-                            </button>
 
+
+        <div style="text-align: center">
+            {% for date in dates %}
+                <button class="accordion">{{ date.jd_week }} {{ date.jd_day }} {{ date.jd_month }}</button>
+                <div class="panel" style="text-align-all: center">
+                    {% for time in times %}
+                        {% if time.date == date %}
+                            <abbr title="انتخاب زمان">
+                                <a href="{% url 'reserve-page' date.name date.date time.pk %}">
+                                    <div class="cander-boxes" style="background-color: yellow">
+                                        <p>
+                                            {{ time.time }}: ساعت
+                                        </p>
+
+                                        <p>
+                                            نفری : {{ time.date.name.price_per_player }} تومان
+                                        </p>
+                                    </div>
+                                </a>
+                            </abbr>
                         {% endif %}
                     {% endfor %}
-                </abbr>
-            </div>
-        </section>
+                </div>
+            {% endfor %}
+        </div>
     </main>
 
 {% endblock %}
